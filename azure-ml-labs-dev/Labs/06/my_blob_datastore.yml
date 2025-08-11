@@ -1,0 +1,9 @@
+# my_blob_datastore.yml
+$schema: https://azuremlschemas.azureedge.net/latest/azureBlob.schema.json
+name: dmdp100data
+type: azure_blob
+description: Datastore pointing to a blob container.
+account_name: polandaidevshared  
+container_name: dm-dp100-azureml
+credentials:
+  account_key: HqkpshT4RS5IE89tvHT84BUCxfNdYTrrvxScbtNuqJKBv0Tns6+A864kf+1cyfGB+OJeBJNwMt3Q+AStPLRzkg==

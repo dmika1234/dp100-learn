@@ -15,6 +15,9 @@
 -----------------------------------------------------------------------------------------------------------------------------
 # My Notes
 
+## Endpoints
+[endpoints tutotiral](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-deploy-online-endpoints?view=azureml-api-2&wt.mc_id=aiml-17954-sejuare&tabs=cli)
+
 ## Console Notes
 ### Python venv
 - Create a venv: `python -m venv dp100venv`
