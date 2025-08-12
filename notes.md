@@ -1,5 +1,12 @@
 # DP-100 Notes
 -----------------------------------------------------------------------------------------------------------------------------
+
+# Setups
+- You need to specify workspace name in MLClient setup, otherwise you get errors when using CLCLient:
+- to read a data asset into notebook you need to have azureml-fsspec installed
+- 
+
+
 # TODO
 - learn how to use compute instance in VS code
 # Quick Links

@@ -1,0 +1,7 @@
+
+paths:
+  - file: ./data/telco-churn-data/telco-customer-churn.csv
+transformations:
+  - read_delimited:
+        delimiter: ','
+        encoding: 'ascii'
