@@ -10,3 +10,6 @@ dependencies:
   - pip
   - pip:
     - seaborn
+    - mltable
+    - mlflow
+    - azureml-mlflow
