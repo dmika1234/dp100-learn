@@ -1,13 +1,20 @@
-name: dmdp100env
+
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
-  - scikit-learn
-  - pandas
-  - numpy
-  - matplotlib
-  - mlflow
-  - pip
+  - python=3.10.11
+  - pip=22.3.1
   - pip:
-    - seaborn
+      - scipy
+      - pandas
+      - scikit-learn
+      - adlfs
+      - fsspec
+      - xgboost
+      - lightgbm
+      - mlflow
+      - azureml-mlflow
+      - matplotlib
+      - tqdm
+      - seaborn
+name: dmdp100env
