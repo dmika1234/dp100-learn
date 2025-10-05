@@ -10,6 +10,8 @@
 # TODO
 - learn how to use compute instance in VS code
 # Quick Links
+- [Azure AI ML Python SDK v2 Code Docs](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml?view=azure-python)
+- [Azure ML Docs](https://learn.microsoft.com/en-us/azure/machine-learning/?view=azureml-api-2)
 
 ## Main Study Guides
 - [E Learning Free Channel](https://www.youtube.com/watch?v=O-oQNL9gcFg&list=PLWsnB2XBNJzLNIdPGe81CImXnaeQMeLyx&index=19)
