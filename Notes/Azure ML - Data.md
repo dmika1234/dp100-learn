@@ -17,16 +17,16 @@ A **datastore** is an abstraction for a cloud data source. It securely stores co
 - **Credential-based** – Use a service principal, SAS token, or account key.  
 - **Identity-based** – Use Microsoft Entra ID or managed identity.
 
-### Example (SAS token)
+### Example (Account Key)
 ```python
 blob_datastore = AzureBlobDatastore(
-    name="blob_sas_example",
-    description="Datastore pointing to a blob container",
-    account_name="mytestblobstore",
-    container_name="data-container",
-    credentials=SasTokenConfiguration(
-        sas_token="?xx=XXXX-XX-XX&xx=xxxx&xxx=xxx..."
-    ),
+    			name = "blob_example",
+    			description = "Datastore pointing to a blob container",
+    			account_name = "mytestblobstore",
+    			container_name = "data-container",
+    			credentials = AccountKeyConfiguration(
+        			account_key="XXXxxxXXXxXXXXxxXXX"
+    			),
 )
 ml_client.create_or_update(blob_datastore)
 ```
@@ -43,6 +43,21 @@ When creating a URI-based file data asset, you can use the following path format
 - **Datastore:** `azureml://datastores/<datastore_name>/paths/<folder>/<file>`
 
 ---
+
+### Example
+```python
+my_path = '<supported-path>'
+my_data = Data(
+    path=my_path,
+    type=AssetTypes.URI_FOLDER,
+    description="<description>",
+    name="<name>",
+    version='<version>'
+)
+
+ml_client.data.create_or_update(my_data)
+```
+
 
 ### MLTable Data Asset
 - Represents **tabular data** with a stored **schema definition** for reading.  
