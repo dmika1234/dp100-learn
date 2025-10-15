@@ -2,6 +2,7 @@
 data/*
 # Keep folders
 !data/telco-churn-data/
+!data/azure-ml-labs-data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
