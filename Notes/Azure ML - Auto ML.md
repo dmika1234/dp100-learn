@@ -1,9 +1,6 @@
 # Auto ML
 Azure Automated Machine Learning allows you to try multiple preprocessing transformations and algorithms with your data to find the best machine learning model instead of manually having to test and evaluate various configurations to train a machine learning model.
 
-
-
-
 ## How does AutoML work?
 
 During training, Azure Machine Learning creates many pipelines in parallel that try different algorithms and parameters for you. The service iterates through ML algorithms paired with feature selections, where each iteration produces a model with a training score. The better the score for the metric you want to optimize for, the better the model is considered to "fit" your data. It stops once it hits the exit criteria defined in the experiment.
@@ -40,7 +37,7 @@ If you do want to make use of the integrated featurization function, you can cus
 
 ## Configure an AutoML experiment
 
-When you use the Python SDK (v2) to configure an AutoML experiment or job, you configure the experiment using the `automl` class. For classification, you'll use the` automl.classification` function as shown in the following example:
+When you use the Python SDK (v2) to configure an AutoML experiment or job, you configure the experiment using the `automl` class. For classification, you'll use the `automl.classification` function as shown in the following example:
 ```python
 from azure.ai.ml import automl
 
@@ -82,6 +79,20 @@ classification_job.set_limits(
     enable_early_termination=True,
 )
 ```
+
+## Explore preprocessing steps
+
+When you've enabled featurization for your AutoML experiment, data guardrails will automatically be applied too. The three data guardrails that are supported for classification models are:
+- Class balancing detection.
+- Missing feature values imputation.
+- High cardinality feature detection.
+
+Each of these data guardrails will show one of three possible states:
+- **Passed**: No problems were detected and no action is required.
+- **Done**: Changes were applied to your data. You should review the changes AutoML has made to your data.
+- **Alerted**: An issue was detected but couldn't be fixed. You should review the data to fix the issue.
+
+
 
 
 

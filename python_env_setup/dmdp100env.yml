@@ -12,7 +12,7 @@ dependencies:
       - fsspec
       - xgboost
       - lightgbm
-      - mlflow
+      - mlflow<3.0.0
       - azureml-mlflow
       - matplotlib
       - tqdm

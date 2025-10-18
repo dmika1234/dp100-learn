@@ -12,3 +12,5 @@ pip uninstall azure-ai-ml
 pip install azure-ai-ml
 pip install mltable
 pip install fsspec azureml-fsspec
+pip install "mlflow<3.0.0"
+pip install azure-mlflow
