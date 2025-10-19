@@ -1,3 +1,9 @@
+# Ignore all AML-related files and temporary files
+**/.amlignore
+**/.amlignore.amltmp
+**/*.amltmp
+**/.ipynb_aml_checkpoints/
+
 # Ignore everything in the data/ folder
 data/*
 # Keep folders
