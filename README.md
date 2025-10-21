@@ -11,7 +11,7 @@ The goal is to make it easier to understand how different Azure ML components fi
 
 > **Note:** Some materials may become outdated as Azure Machine Learning and AI Foundry are frequently updated. ![Last Update](https://img.shields.io/github/last-commit/dmika1234/dp100-learn/main?label=Last%20Update)
 
-test
+
 ---
 
 ## 📘 Repository Structure
