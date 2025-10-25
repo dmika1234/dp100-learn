@@ -17,9 +17,9 @@ The goal is to make it easier to understand how different Azure ML components fi
 ## 📘 Repository Structure
 
 - [🧾 Notes](./notes/) — Core Azure ML and AI Foundry summaries.  
-- [🧪 Labs](./labs/dev/) — Practical exercises and Microsoft lab adaptations.  
 - [📚 Tutorials](./tutorials/) — Topic-based notebooks and scripts.  
-- [⚙️ Environment setups](./env/) — Local and Azure environment configurations.
+- [⚙️ Environment setups](./environment/) — Local and Azure environment configurations.
+<!-- - [🧪 Azure Labs](./azure-labs/) — Practical exercises and Microsoft lab adaptations.   -->
 <!-- - [💡 Projects](./projects/) — End-to-end mini projects for practice.  -->
  
 
