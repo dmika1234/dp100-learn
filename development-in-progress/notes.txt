@@ -1,0 +1,2 @@
+git config --global user.name "Azure ML CI"
+git config --global user.email "azureci@noreply.com"
