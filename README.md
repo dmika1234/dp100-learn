@@ -33,12 +33,12 @@ Got it 👍 — here’s the same polished version with **standard numbering** i
 
 ### 🎯 Is This Certification Right for You?
 
-The **Azure Data Scientist Associate (DP-100)** certification validates your ability to use **Azure Machine Learning** to build, train, and deploy machine learning models.
+The **Azure Data Scientist Associate (DP-100)** certification validates your ability to use **Azure Machine Learning** to build, train, and deploy machine learning models and use **Azure AI Foundry** services to develop generative AI solutions.
 
 It’s best suited for data professionals who:
 
 * Have experience with **data science** or **machine learning** concepts.
-* Want to strengthen their practical skills in **Azure Machine Learning**.
+* Want to strengthen their practical skills in **Azure Machine Learning** and **Azure AI Foundry**.
 * Aim to enhance their **career profile** with an Azure certification.
 
 If you’re new to cloud or data science, consider starting with **AZ-900** or a more foundational course.
