@@ -1,92 +1,128 @@
 # First Steps with Python SDK v2
 [🏠 Return Home](./../README.md)
 
-For data scientists the most convenient way to interact with Azure Machine Learning is through the **Azure ML Python SDK v2**.  
-This SDK allows you to programmatically manage Azure ML resources, submit experiments, and deploy models directly from your local machine or development environment. The SDK also allows you to manage other Azure resources such as storage accounts,  but in this tutorial we will focus on Azure Machine Learning specific tasks.
-Before you start diving into specific Azure Machine Learning tasks, it’s essential to learn how to setup your Python SDK v2 environment.
-As you probably now Jupyter Notebooks are ideal for analyzing, experimenting with the data and creating machine learning models prototypes.
-if you're interacting with Azure Machine Learning on your local machine you can use Jupyter Notebooks in most IDEs including Visual Studio Code.
-If you prefer a cloud-based solution, you can use [Azure Machine Learning Notebooks](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-run-jupyter-notebooks?view=azureml-api-2).
+For data scientists, the most convenient way to interact with Azure Machine Learning is through the **Azure ML Python SDK v2**.  
+This SDK allows you to programmatically manage Azure ML resources, submit experiments, and deploy models directly from your local or cloud-based development environment.  
+It can also manage other Azure resources (like storage accounts), but this guide focuses on Azure Machine Learning–specific workflows.
 
-## Azure ML workspace
-If you're working on your local machine or on a Virtual Machine outside of Azure Machine Learning you can already use the Azure ML SDK v2 to create a new Azure Machine Learning workspace check out the [quickstart guide](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-azure-ml-in-a-day?view=azureml-api-2). However we recommend creating the workspace directly in the Azure Portal which is the easiest way to get started. To create a new workspace you need to find "Azure Machine Learning" resource in the Azure Portal and follow the steps in the wizard. You can find more information about creating a new workspace [here](https://learn.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?view=azureml-api-2).
+Before diving into specific tasks, it’s essential to correctly **set up your Python SDK v2 environment**.
 
-## Setting Azure Environment
-If you're using Azure Machine Learning Notebooks most of the setup is already done for you. But you can still follow the steps below to learn what parameters you can configure.
-You need to save in a safe place information on you Azure subscription, resource group, workspace name and region where your workspace is deployed.
-You can use `.env` file to store these values in key-value pairs, for example:
+---
+
+## Development Environment Options
+
+You can use Jupyter Notebooks in most IDEs (e.g., Visual Studio Code) for local development.  
+If you prefer a managed environment, try [Azure Machine Learning Notebooks](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-run-jupyter-notebooks?view=azureml-api-2), which run directly in the cloud and already include the SDK setup.
+
+---
+
+## Azure ML Workspace
+
+If you’re developing **outside** of Azure ML (e.g., on your local machine or VM), you can use the SDK to create a workspace programmatically — see the [quickstart guide](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-azure-ml-in-a-day?view=azureml-api-2).  
+However, for simplicity, we recommend creating it directly in the **Azure Portal**:
+
+1. Search for “Azure Machine Learning” in the Portal.  
+2. Follow the resource creation wizard.  
+3. Note your **Subscription ID**, **Resource Group**, **Workspace Name**, and **Region** — you’ll need them later.
+
+More details are available [here](https://learn.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?view=azureml-api-2).
+
+---
+
+## Setting the Azure Environment
+
+If you’re using Azure Machine Learning Notebooks, much of the setup is already done.  
+Still, it’s good practice to explicitly define key environment parameters.
+
+You can store them in a `.env` file (recommended):
+
 ```env
-SUBSCRIPTION_ID = "your-subscription-id"
-PREFERED_RESOURCE_LOCATION = "your-preferred-resource-location"
-DEFAULT_RESOURCE_LOCATION = "your-default-resource-location"
-MAIN_STORAGE_ACCOUNT_ACCESS_KEY = "your-main-storage-account-access-key"
+SUBSCRIPTION_ID="your-subscription-id"
+RESOURCE_GROUP="your-resource-group"
+WORKSPACE_NAME="your-workspace-name"
+PREFERRED_RESOURCE_LOCATION="your-preferred-region"
+MAIN_STORAGE_ACCOUNT="your-storage-account-name"
+MAIN_STORAGE_ACCOUNT_ACCESS_KEY="your-storage-account-access-key"
+````
+
+You can find these values under your Azure ML workspace **Overview** in the Azure Portal.
+Storage account keys are available under **Security + Networking → Access keys**.
+
+---
+
+## Installing Python Packages
+
+We strongly recommend using a **conda** or **virtual environment** to isolate dependencies.
+Dependency conflicts are common, so start with a clean environment.
+
+> 💡 Tip: Use the same Python version as Azure ML compute instances (as of writing, **Python 3.10.11**).
+
+Install the required packages in the following order:
+
+```bash
+pip install azure-ai-ml
+pip install mltable
+pip install fsspec
+pip install azureml-fsspec
+pip install "mlflow<3.0.0"
+pip install azureml-mlflow
 ```
-You can find all the information in the Azure Portal under your Azure Machine Learning workspace overview.
-Additionally if you want to interact with you storage account also via SDK you can also set the storage account name and access key. The access key can be found in the storage account settings under "Security + Networking > Access keys".
 
-## Setting Up Python Packages
-To interact with Azure Machine Learning using Python SDK v2, you need to install the required packages.
-We recommend using a virtual or conda environment to manage your dependencies.
-We stumbled upon many issues with dependency conflicts when installing the packages.
-We recommend recreating our environment for the best experience, however our environment might be outdated in the near future.
+If installation issues occur, recreate the environment and use our prepared [requirements file](../environment/local-development-environment/pip-requirements-2.txt).
 
+---
 
-If you're working on your local machine you need to install python first. We recommend installing python version that is used in Azure compute instances in AzureML enviorment. In our case we used python 3.10.11.
-Then no matter if you're installing locally or on a compute instance use pip to install the required packages in the specified order:
-```
-azure-ai-ml
-mltable
-fsspec
-azureml-fsspec
-"mlflow<3.0.0"
-azureml-mlflow
-```
-If this won't you can try to install the packages in a fresh conda or virtual environment and try installing with our [requirements files](../environment/local-development-environment/pip-requirements-2.txt).
+## Authentication
 
-## Authenticating 
+Authentication depends on your execution environment — **Azure Compute Instance** or **Local Machine**.
 
-This step will depend if you're working on a compute instance in AzureML or on your local machine.
+### On Azure ML Compute Instance
 
-### Authentication on Compute Instance
-On Azure ML Compute Instances, the config file should be automatically created for you when you create a new compute instance. This file contains the necessary authentication information to access Azure services.
-You don't need to enter you workspace details anywhere.
-You can load your workspace using the following code:
+When you create a Compute Instance in Azure ML, the configuration file is automatically generated.
+It includes credentials needed to access your workspace.
+
+Use the following code to connect:
+
 ```python
 from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
+from azure.ai.ml import MLClient
 
 try:
     credential = DefaultAzureCredential()
-    # Check if given credential can get token successfully.
     credential.get_token("https://management.azure.com/.default")
-except Exception as ex:
-    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential not work
+except Exception:
     credential = InteractiveBrowserCredential()
 
-from azure.ai.ml import MLClient
-# Get a handle to workspace
 ml_client = MLClient.from_config(credential=credential)
 ```
 
-### Local Authentication
-Here we assume that you're already authenticated in Azure on your device. For example using Azure CLI `az login`. If not please follow the instruction [here](./../notes/Azure%20-%20Setting%20Up.md).
-To authenticate in your local environment use the following code you need to fill in your subscription id, resource group name and workspace name.
+---
+
+### On a Local Machine
+
+Before authenticating, make sure you’re signed in with the Azure CLI:
+
+```bash
+az login
+```
+
+Then, load environment variables and connect manually:
+
 ```python
 import os
 from dotenv import load_dotenv
 from azure.identity import DefaultAzureCredential
 from azure.ai.ml import MLClient
 
-# Load environment variables from .env file
+# Load .env file
 load_dotenv("<path-to-your-env-file>")
 
-subscription_id = os.environ["<your-subscription-id>"]
-resource_group = os.environ["<your-resource-group-name>"]
-resource_location = os.environ["<your-resource-location>"]
-workspace_name = os.environ["<your-workspace-name>"]
+subscription_id = os.environ["SUBSCRIPTION_ID"]
+resource_group = os.environ["RESOURCE_GROUP"]
+workspace_name = os.environ["WORKSPACE_NAME"]
 
-# Authenticate using DefaultAzureCredential (requires subscription_id to be set)
+# Authenticate and initialize client
 credentials = DefaultAzureCredential()
-# Get a handle to workspace
 ml_client = MLClient(
     credential=credentials,
     subscription_id=subscription_id,
@@ -95,22 +131,26 @@ ml_client = MLClient(
 )
 ```
 
-### Verifying the connection
-After authenticating you can verify the connection using the following sample code.
+---
+
+## Verifying the Connection
+
+You can confirm that the connection works with a simple check:
+
 ```python
 try:
-    ml_client.workspaces.get("<your-workspace-name>")
-    print("Connection verified successfully.")
+    ml_client.workspaces.get(ml_client.workspace_name)
+    print("✅ Connection verified successfully.")
 except Exception as e:
-    print("Failed to verify connection.")
+    print("❌ Failed to verify connection.")
     print(e)
 ```
 
+---
 
 ## Summary
 
-Now you have your Python SDK v2 environment set up and authenticated.
-
-You can start using the Azure ML SDK to interact with your Azure Machine Learning workspace.
+Your **Python SDK v2 environment** is now set up and authenticated.
+You can start using `MLClient` to manage datasets, jobs, compute resources, and deployments directly from code.
 
 [🏠 Return Home](./../README.md)
