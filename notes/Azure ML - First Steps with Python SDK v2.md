@@ -1,15 +1,15 @@
-# Running Your First Azure Machine Learning Notebook
+# First Steps with Python SDK v2
 [🏠 Return Home](./../README.md)
 
 For data scientists the most convenient way to interact with Azure Machine Learning is through the **Azure ML Python SDK v2**.  
-This SDK allows you to programmatically manage Azure ML resources, submit experiments, and deploy models directly from your local machine or development environment.
+This SDK allows you to programmatically manage Azure ML resources, submit experiments, and deploy models directly from your local machine or development environment. The SDK also allows you to manage other Azure resources such as storage accounts,  but in this tutorial we will focus on Azure Machine Learning specific tasks.
 Before you start diving into specific Azure Machine Learning tasks, it’s essential to learn how to setup your Python SDK v2 environment.
 As you probably now Jupyter Notebooks are ideal for analyzing, experimenting with the data and creating machine learning models prototypes.
 if you're interacting with Azure Machine Learning on your local machine you can use Jupyter Notebooks in most IDEs including Visual Studio Code.
 If you prefer a cloud-based solution, you can use [Azure Machine Learning Notebooks](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-run-jupyter-notebooks?view=azureml-api-2).
 
 ## Azure ML workspace
-In this notebook we assume that 
+If you're working on your local machine or on a Virtual Machine outside of Azure Machine Learning you can already use the Azure ML SDK v2 to create a new Azure Machine Learning workspace check out the [quickstart guide](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-azure-ml-in-a-day?view=azureml-api-2). However we recommend creating the workspace directly in the Azure Portal which is the easiest way to get started. To create a new workspace you need to find "Azure Machine Learning" resource in the Azure Portal and follow the steps in the wizard. You can find more information about creating a new workspace [here](https://learn.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?view=azureml-api-2).
 
 ## Setting Azure Environment
 If you're using Azure Machine Learning Notebooks most of the setup is already done for you. But you can still follow the steps below to learn what parameters you can configure.
