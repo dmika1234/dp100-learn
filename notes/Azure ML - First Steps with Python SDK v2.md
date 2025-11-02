@@ -152,5 +152,6 @@ except Exception as e:
 
 Your **Python SDK v2 environment** is now set up and authenticated.
 You can start using `MLClient` to manage datasets, jobs, compute resources, and deployments directly from code.
+You can try to run some of the examples from this note in this [notebook](../tutorials/First%20Azure%20ML%20Notebook.ipynb).
 
 [🏠 Return Home](./../README.md)

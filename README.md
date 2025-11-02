@@ -96,7 +96,7 @@ However, not all topics in the exam outline are covered there. This repository c
 Use these notes and tutorials to **extend and reinforce** your learning:
 
 * [Data in Azure Machine Learning](./notes/Azure%20ML%20-%20Data.md)
-* [What is Azure Data Lake Gen 2?](./notes/Azure%20Data%20Lake%20Gen%202.md)
+* [What is Azure Data Lake Gen 2?](./notes/Azure%20-%2Data%20Lake%20Gen%202.md)
 * [Compute in Azure Machine Learning](./notes/Azure%20ML%20-%20Compute.md)
 * [Using Scripts and Commands in Azure ML](./notes/Azure%20ML%20-%20Scripts,%20Commads.md)
 * [Integrating Git with Azure Machine Learning](./notes/Azure%20ML%20-%20Git%20Integration.md)
