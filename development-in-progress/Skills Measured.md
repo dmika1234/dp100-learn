@@ -71,8 +71,9 @@ As a candidate for this exam, you should have knowledge and experience in data s
     
 *   Create and manage environments
     
-*   Share assets across workspaces by using registries
-    
+*   Share assets across workspaces by using registries:
+        - https://learn.microsoft.com/en-us/azure/machine-learning/how-to-share-data-across-workspaces-with-registries?view=azureml-api-2&tabs=cli
+        - https://learn.microsoft.com/en-us/azure/machine-learning/how-to-share-models-pipelines-across-workspaces-with-registries?view=azureml-api-2&tabs=python
 
 ### Explore data, and run experiments (20–25%)
 

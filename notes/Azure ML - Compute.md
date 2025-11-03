@@ -73,6 +73,8 @@ ci_basic = ComputeInstance(
 )
 ml_client.begin_create_or_update(ci_basic).result()
 ```
+### Customizing Compute Instance
+You can customize compute instances in a terminal or Jupyter notebook after creation. You can install packages and create custom kernels. To learn more refer to this [doc](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-access-terminal?view=azureml-api-2).
 ---
 
 ## Creating a Compute Cluster
