@@ -1,5 +1,5 @@
 # Auto ML
-Azure Automated Machine Learning allows you to try multiple preprocessing transformations and algorithms with your data to find the best machine learning model instead of manually having to test and evaluate various configurations to train a machine learning model.
+Azure Automated Machine Learning allows you to try multiple preprocessing transformations and algorithms with your data to find the best machine learning model instead of manually having to test and evaluate various configurations to train a machine learning model. It is suited for many different tasks including classification, regression, forecasting, computer vision, and natural language processing.
 
 ## How does AutoML work?
 
@@ -11,7 +11,7 @@ AutoML applies scaling and normalization to numeric data automatically, helping 
 
 Using Azure Machine Learning, you can design and run your automated ML training experiments with these steps:
 
-1.**Identify the ML problem to be solved**: classification, forecasting, regression, computer vision, or NLP.
+1. **Identify the ML problem to be solved**: classification, forecasting, regression, computer vision, or NLP.
 2. **Choose the way to interact with Auto ML**: Python SDK v2, Azure Machine Learning CLI or Azure Web UI.
 3. **Specify the source of the labeled training data.**
 4. **Configure the automated machine learning parameters.**
@@ -94,6 +94,9 @@ Each of these data guardrails will show one of three possible states:
 
 
 
-
-
-[Docs](https://learn.microsoft.com/en-us/azure/machine-learning/concept-automated-ml?view=azureml-api-2)
+## Learn more
+- [What is Azure Automated Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/concept-automated-ml?view=azureml-api-2).
+- [Set up AutoML training for tabular data with the Azure Machine Learning CLI and Python SDK](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-configure-auto-train?view=azureml-api-2&tabs=python#supported-algorithms).
+- [Set up AutoML to train computer vision models](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2&tabs=cli).
+- [Prepare data for computer vision tasks with automated machine learning](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-prepare-datasets-for-automl-images?view=azureml-api-2&tabs=python).
+- [Tutorial: Train an object detection model with AutoML and Python](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-auto-train-image-models?view=azureml-api-2&tabs=python).
