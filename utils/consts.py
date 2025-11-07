@@ -1,11 +1,18 @@
-import os
+from pathlib import Path
 import sys
 from dotenv import load_dotenv
+import os
 
 
-project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if str(project_dir) not in sys.path:
-    sys.path.insert(0, str(project_dir))
+target = "dp100-learn"
+p = Path(__file__).resolve()
+while p.name != target and p.parent != p:
+    p = p.parent
+project_dir = p
+if str(p) not in sys.path:
+    sys.path.append(str(p))
+print("Added to sys.path:", p)
+
 load_dotenv(os.path.join(project_dir, ".env"))
 
 AZUREML_SUBSCRIPTION_ID = os.getenv("AZUREML_SUBSCRIPTION_ID")
