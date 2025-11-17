@@ -110,6 +110,8 @@ To learn more you can follow microsoft's official documentation and tutorials:
 - [Set up AutoML to train computer vision models](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2&tabs=cli).
 - [Train an object detection model with AutoML and Python](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-auto-train-image-models?view=azureml-api-2&tabs=python).
 
+## Azure AutoML for natural language processing
+
 
 
 ## Learn more
