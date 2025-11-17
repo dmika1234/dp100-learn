@@ -1,4 +1,7 @@
 # Auto ML
+[🏠 Return Home](./../README.md)
+
+
 Azure Automated Machine Learning allows you to try multiple preprocessing transformations and algorithms with your data to find the best machine learning model instead of manually having to test and evaluate various configurations to train a machine learning model. It is suited for many different tasks including classification, regression, forecasting, computer vision, and natural language processing.
 
 ## How does AutoML work?
@@ -91,6 +94,21 @@ Each of these data guardrails will show one of three possible states:
 - **Passed**: No problems were detected and no action is required.
 - **Done**: Changes were applied to your data. You should review the changes AutoML has made to your data.
 - **Alerted**: An issue was detected but couldn't be fixed. You should review the data to fix the issue.
+
+## Azure AutoML for computer vision
+Azure Automated Machine Learning also supports training computer vision models for image classification and object detection tasks.
+
+This machine learning task requires you to [prepare the data in a specific format](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-prepare-datasets-for-automl-images?view=azureml-api-2&tabs=python). 
+>*In order to train computer vision models using AutoML, you need to get labeled training data. The images need to be uploaded to the cloud. Label annotations need to be in JSONL format. You can either use the Azure Machine Learning Data Labeling tool to label your data or you could start with prelabeled image data.*
+
+With the data prepared, you can configure an AutoML job for computer vision tasks for example using the `automl.image_classification` or `automl.object_detection` functions.
+
+Follow our tutorials on specific computer vision tasks with AutoML:
+- [Tutorial: Azure Auto ML for Image Classification](./../tutorials/Azure%20Auto%20ML%20for%20Image%20Classification.ipynb).
+
+To learn more you can follow microsoft's official documentation and tutorials:
+- [Set up AutoML to train computer vision models](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models?view=azureml-api-2&tabs=cli).
+- [Train an object detection model with AutoML and Python](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-auto-train-image-models?view=azureml-api-2&tabs=python).
 
 
 
