@@ -72,7 +72,9 @@ to focus on the most up-to-date content.
 You can follow the official
 [**Microsoft Learn course**](https://learn.microsoft.com/en-us/credentials/certifications/azure-data-scientist/?source=recommendations&practice-assessment-type=certification)
 as your main study path.
-However, not all topics in the exam outline are covered there. This repository complements the Microsoft materials with additional explanations, practical examples, and hands-on exercises.
+However, not all topics in the exam outline are covered there. 
+You can code examples in this [**repository**](https://github.com/Azure/azureml-examples/tree/main).
+This repository complements the Microsoft materials with additional explanations, practical examples, and hands-on exercises.
 
 ---
 

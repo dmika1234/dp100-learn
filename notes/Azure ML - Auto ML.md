@@ -112,6 +112,7 @@ To learn more you can follow microsoft's official documentation and tutorials:
 
 ## Azure AutoML for natural language processing
 
+Azure AutoML also supports NLP experiments. It supports multiple NLP tasks such as Multi-class text classification or Multi-label text classification. The data preparation is much easier as you can even pass the data in csv format. You can find more information on how to configure such experiment in this [Microsof Guide](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-nlp-models?view=azureml-api-2&tabs=python). You can also follow our [tutorial](./../tutorials/Azure%20Auto%20ML%20for%20NLP.ipynb).
 
 
 ## Learn more
