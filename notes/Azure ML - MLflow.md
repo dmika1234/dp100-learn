@@ -1,4 +1,4 @@
-# Using MLflow in Azure Machine Learninr
+# Using MLflow in Azure Machine Learning
 
 
 ## What is MLflow?
@@ -215,8 +215,94 @@ sweep_job = command_job_for_sweep.sweep(
 )
 ```
 
+---
+
+### Early Termination Policies
+Early termination policies allow you to stop underperforming runs before they complete, which can save time and computational resources.
+
+There are two main parameters when you choose to use an early termination policy:
+
+- `evaluation_interval`: Specifies at which interval you want the policy to be evaluated. Every time the primary metric is logged for a trial counts as an interval.
+- `delay_evaluation`: Specifies when to start evaluating the policy. This parameter allows for at least a minimum of trials to complete without an early termination policy affecting them.
+
+Azure Machine Learning supports several early termination policies.
+
+- **Bandit policy**: Uses a `slack_factor` (relative) or `slack_amount`(absolute). Any new model must perform within the slack range of the best performing model.
+- **Median stopping policy**: Uses the median of the averages of the primary metric. Any new model must perform better than the median.
+- **Truncation selection policy**: Uses a `truncation_percentage`, which is the percentage of lowest performing trials. Any new model must perform better than the lowest performing trials.
 
 
+To configure a bandit early termination policy, you can use the following code:
+```python
+from azure.ai.ml.sweep import BanditPolicy
+
+early_termination_policy = BanditPolicy(
+    slack_factor=0.2
+    evaluation_interval=1,
+    delay_evaluation=5,
+)
+```
+
+### Run a sweep job
+To run a sweep job, you need to create a training script just the way you would do for any other training job, except that your script **must**:
+
+- Include an argument for each hyperparameter you want to vary.
+- Log the target performance metric with MLflow. A logged metric enables the sweep job to evaluate the performance of the trials it initiates, and identify the one that produces the best performing model.
+
+
+#### Configure and run a sweep job
+To prepare the sweep job, you must first create a base command job that specifies which script to run and defines the parameters used by the script:
+
+```Python
+from azure.ai.ml import command
+
+# configure command job as base
+job = command(
+    code="./src",
+    command="python train.py --regularization ${{inputs.reg_rate}}",
+    inputs={
+        "reg_rate": 0.01,
+    },
+    environment="AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest",
+    compute="aml-cluster",
+    )
+```
+You can then override your input parameters with your search space:
+
+```Python
+from azure.ai.ml.sweep import Choice
+
+command_job_for_sweep = job(
+    reg_rate=Choice(values=[0.01, 0.1, 1]),
+)
+```
+Finally, call `sweep()` on your command job to sweep over your search space:
+
+```Python
+from azure.ai.ml import MLClient
+
+# apply the sweep parameter to obtain the sweep_job
+sweep_job = command_job_for_sweep.sweep(
+    compute="aml-cluster",
+    sampling_algorithm="grid",
+    primary_metric="Accuracy",
+    goal="Maximize",
+)
+
+# set the name of the sweep job experiment
+sweep_job.experiment_name="sweep-example"
+
+# define the limits for this sweep
+sweep_job.set_limits(max_total_trials=4, max_concurrent_trials=2, timeout=7200)
+
+# submit the sweep
+returned_sweep_job = ml_client.create_or_update(sweep_job)
+```
+
+### Monitor and review sweep jobs
+You can monitor sweep jobs in Azure Machine Learning studio. The sweep job will initiate trials for each hyperparameter combination to be tried. For each trial, you can review all logged metrics.
+
+Additionally, you can evaluate and compare models by visualizing the trials in the studio. You can adjust each chart to show and compare the hyperparameter values and metrics for each trial.
 
 
 ## Additional Materials
