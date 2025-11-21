@@ -176,7 +176,7 @@ To define a search space for hyperparameter tuning, create a dictionary with the
 
 For example, the following search space indicates that the `batch_size` hyperparameter can have the value 16, 32, or 64, and the `learning_rate` hyperparameter can have any value from a normal distribution with a mean of 10 and a standard deviation of 3.
 
-```
+```python
 from azure.ai.ml.sweep import Choice, Normal
 
 command_job_for_sweep = job(
@@ -198,7 +198,7 @@ There are three main sampling methods available in Azure Machine Learning:
 
 To use for example grid sampling you need to run the following code
 
-```
+```python
 sweep_job = command_job_for_sweep.sweep(
     sampling_algorithm = "grid",
     ...
@@ -206,7 +206,7 @@ sweep_job = command_job_for_sweep.sweep(
 ```
 
 Sobol sampling requires slightly different syntax presented below.
-```
+```python
 from azure.ai.ml.sweep import RandomSamplingAlgorithm
 
 sweep_job = command_job_for_sweep.sweep(
