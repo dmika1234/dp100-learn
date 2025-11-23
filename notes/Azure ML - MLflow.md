@@ -38,6 +38,17 @@ MLflow supports automatic logging for popular machine learning libraries. If you
 
 You can turn on autologging by using the `autolog` method for the framework you're using. For example, to enable autologging for XGBoost models you can use `mlflow.xgboost.autolog()`.
 
+The model is logged when the `.fit()` method is called. The framework you use to train your model is identified and included as the flavor of your model.
+
+Optionally, you can specify which flavor you want your model to be identified as by using `mlflow.<flavor>.autolog()`. Some common flavors that you can use with autologging are:
+- Keras: `mlflow.keras.autolog()`
+- Scikit-learn: `mlflow.sklearn.autolog()`
+- LightGBM: `mlflow.lightgbm.autolog()`
+- XGBoost: `mlflow.xgboost.autolog()`
+- TensorFlow: `mlflow.tensorflow.autolog()`
+- PyTorch: `mlflow.pytorch.autolog()`
+- ONNX: `mlflow.onnx.autolog()`
+
 
 A notebook cell that trains and tracks a classification model using autologging may be similar to the following code example:
 ```python
@@ -304,6 +315,149 @@ You can monitor sweep jobs in Azure Machine Learning studio. The sweep job will 
 
 Additionally, you can evaluate and compare models by visualizing the trials in the studio. You can adjust each chart to show and compare the hyperparameter values and metrics for each trial.
 
+
+
+## Register an MLflow model in Azure Machine Learning
+Azure Machine Learning allows you to easily deploy models that you train and track with Mlflow. For example, when you have an MLflow model, you can opt for the no-code deployment in Azure Machine Learning.
+
+
+>*NOTE: Some types of models are currently not supported by Azure Machine Learning and MLflow. In that case, you can register a custom model. Learn more about how to work with [(custom) models in Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-models?view=azureml-api-2&tabs=cli).*
+
+### Use autologging to log a model
+When you train a model, you can include `mlflow.autolog()` to enable autologging. MLflow's autologging automatically logs parameters, metrics, artifacts, and the model you train. When you use autologging, an output folder is created which includes all necessary model artifacts, including the `MLmodel` file that references these files and includes the model's metadata.
+
+### Manually log a model
+When you want to have more control over how the model is logged, you can use autolog (for your parameters, metrics, and other artifacts), and set `log_models=False`. When you set the `log_models` parameter to false, MLflow doesn't automatically log the model, and you can add it manually.
+
+Logging the model allows you to easily deploy the model. To specify how the model should behave at inference time, you can customize the model's expected inputs and outputs. The schemas of the expected inputs and outputs are defined as the signature in the `MLmodel` file.
+
+#### Customize the signature
+The model signature defines the schema of the model's inputs and outputs. The signature is stored in JSON format in the `MLmodel` file, together with other metadata of the model.
+
+The model signature can be inferred from datasets or created manually by hand.
+
+To log a model with a signature that is inferred from your training dataset and model predictions, you can use `infer_signature()`. For example, the following example takes the training dataset to infer the schema of the inputs, and the model's predictions to infer the schema of the output:
+```python
+import pandas as pd
+from sklearn import datasets
+from sklearn.ensemble import RandomForestClassifier
+import mlflow
+import mlflow.sklearn
+from mlflow.models.signature import infer_signature
+
+iris = datasets.load_iris()
+iris_train = pd.DataFrame(iris.data, columns=iris.feature_names)
+clf = RandomForestClassifier(max_depth=7, random_state=0)
+clf.fit(iris_train, iris.target)
+
+# Infer the signature from the training dataset and model's predictions
+signature = infer_signature(iris_train, clf.predict(iris_train))
+
+# Log the scikit-learn model with the custom signature
+mlflow.sklearn.log_model(clf, "iris_rf", signature=signature)
+```
+Alternatively, you can create the signature manually:
+```python
+from mlflow.models.signature import ModelSignature
+from mlflow.types.schema import Schema, ColSpec
+
+# Define the schema for the input data
+input_schema = Schema([
+  ColSpec("double", "sepal length (cm)"),
+  ColSpec("double", "sepal width (cm)"),
+  ColSpec("double", "petal length (cm)"),
+  ColSpec("double", "petal width (cm)"),
+])
+
+# Define the schema for the output data
+output_schema = Schema([ColSpec("long")])
+
+# Create the signature object
+signature = ModelSignature(inputs=input_schema, outputs=output_schema)
+```
+
+### Understand the MLflow model format
+MLflow uses the MLmodel format to store all relevant model assets in a folder or directory. One essential file in the directory is the `MLmodel` file. The `MLmodel` file is the single source of truth about how the model should be loaded and used.
+
+Explore the `MLmodel` file format
+The `MLmodel` file may include:
+- `artifact_path`: During the training job, the model is logged to this path.
+- `flavor`: The machine learning library with which the model was created.
+- `model_uuid`: The unique identifier of the registered model.
+- `run_id`: The unique identifier of job run during which the model was created.
+- `signature`: Specifies the schema of the model's inputs and outputs:
+- `inputs`: Valid input to the model. For example, a subset of the training dataset.
+- `outputs`: Valid model output. For example, model predictions for the input dataset.
+
+An example of a MLmodel file created for a computer vision model trained with fastai may look like:
+```yml
+artifact_path: classifier
+flavors:
+  fastai:
+    data: model.fastai
+    fastai_version: 2.4.1
+  python_function:
+    data: model.fastai
+    env: conda.yaml
+    loader_module: mlflow.fastai
+    python_version: 3.8.12
+model_uuid: e694c68eba484299976b06ab9058f636
+run_id: e13da8ac-b1e6-45d4-a9b2-6a0a5cfac537
+signature:
+  inputs: '[{"type": "tensor",
+             "tensor-spec": 
+                 {"dtype": "uint8", "shape": [-1, 300, 300, 3]}
+           }]'
+  outputs: '[{"type": "tensor", 
+              "tensor-spec": 
+                 {"dtype": "float32", "shape": [-1,2]}
+            }]'
+```
+
+#### Choose the flavor
+A flavor is the machine learning library with which the model was created. Flavor in MLflow tells you how a model should be persisted and loaded. Because each model flavor indicates how they want to persist and load models, the MLModel format doesn't enforce a single serialization mechanism that all the models need to support.
+
+**Python function** flavor is the default model interface for models created from an MLflow run. Any MLflow python model can be loaded as a `python_function` model, which allows for workflows like deployment to work with any python model regardless of which framework was used to produce the model. This interoperability is immensely powerful as it reduces the time to operationalize in multiple environments.
+
+#### Configure the signature
+Apart from flavors, the `MLmodel` file also contains signatures that serve as data contracts between the model and the server running your model.
+
+There are two types of signatures:
+- **Column-based**: used for tabular data with a `pandas.Dataframe` as inputs.
+- **Tensor-based**: used for n-dimensional arrays or tensors (often used for unstructured data like text or images), with `numpy.ndarray` as inputs.
+
+As the `MLmodel` file is created when you register the model, the signature also is created when you register the model. When you enable MLflow's autologging, the signature is inferred in the best effort way. If you want the signature to be different, you need to manually log the model.
+
+
+### Register an MLflow model
+In Azure Machine Learning, models are trained in jobs. When you want to find the model's artifacts, you can find it in the job's outputs. To more easily manage your models, you can also store a model in the Azure Machine Learning **model registry**.
+
+>*NOTE: You can also register models trained outside Azure Machine Learning by providing the local path to the model's artifacts.*
+
+There are three types of models you can register:
+- **MLflow**: Model trained and tracked with MLflow. Recommended for standard use cases.
+- **Custom**: Model type with a custom standard not currently supported by Azure Machine Learning.
+- **Triton**: Model type for deep learning workloads. Commonly used for TensorFlow and PyTorch model deployments.
+
+
+To register a model you can use the job name to find the job run and register the model from its outputs.
+```python
+from azure.ai.ml.entities import Model
+from azure.ai.ml.constants import AssetTypes
+
+job_name = returned_job.name
+
+run_model = Model(
+    path=f"azureml://jobs/{job_name}/outputs/artifacts/paths/model/",
+    name="mlflow-diabetes",
+    description="Model created from run.",
+    type=AssetTypes.MLFLOW_MODEL,
+)
+# Uncomment after adding required details above
+ml_client.models.create_or_update(run_model)
+```
+
+All registered models are listed in the Models page of the Azure Machine Learning studio. The registered model includes the model's output directory. When you log and register an MLflow model, you can find the `MLmodel` file in the artifacts of the registered model.
 
 ## Additional Materials
 - [MLflow Documentation](https://www.mlflow.org/docs/latest/ml/tracking/).
