@@ -6,6 +6,7 @@ dependencies:
   - pip=22.3.1
   - pip:
       - scipy
+      - numpy
       - pandas
       - scikit-learn
       - adlfs

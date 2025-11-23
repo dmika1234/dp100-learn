@@ -12,7 +12,8 @@ import matplotlib.pyplot as plt
 @command_component(
     name="train_model_decorator",
     display_name="Train a Logistic Regression Model with Decorator",
-    version="1",
+    version="3",
+    environment="azureml:dmdp100env@latest"
 )
 def train_model_func(
     training_data: Input(type="uri_folder"),
