@@ -1,0 +1,17 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: prep_data
+display_name: Prepare Training Data
+version: 1
+type: command
+inputs:
+  input_data: 
+    type: uri_file
+outputs:
+  output_data:
+    type: uri_folder
+code: ./src
+environment: azureml:dmdp100env@latest
+command: >-
+  python prep-data.py 
+  --input_data ${{inputs.input_data}}
+  --output_data ${{outputs.output_data}}

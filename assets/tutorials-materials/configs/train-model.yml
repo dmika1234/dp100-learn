@@ -1,0 +1,21 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: train_model
+display_name: Train a logistic regression model
+version: 1
+type: command
+inputs:
+  training_data: 
+    type: uri_folder
+  reg_rate:
+    type: number
+    default: 0.01
+outputs:
+  model_output:
+    type: mlflow_model
+code: ./src
+environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
+command: >-
+  python train-model.py 
+  --training_data ${{inputs.training_data}} 
+  --reg_rate ${{inputs.reg_rate}} 
+  --model_output ${{outputs.model_output}} 

@@ -17,4 +17,5 @@ dependencies:
       - matplotlib
       - tqdm
       - seaborn
+      - mldesigner
 name: dmdp100env
