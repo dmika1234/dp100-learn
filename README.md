@@ -18,7 +18,7 @@ The goal is to make it easier to understand how different Azure ML components fi
 
 - [🧾 Notes](./notes/) — Core Azure ML and AI Foundry summaries.  
 - [📚 Tutorials](./tutorials/) — Topic-based notebooks and scripts.  
-- [⚙️ Environment setups](./environment/) — Local and Azure environment configurations.
+<!-- - [⚙️ Environment setups](./environment/) — Local and Azure environment configurations. -->
 <!-- - [🧪 Azure Labs](./azure-labs/) — Practical exercises and Microsoft lab adaptations.   -->
 <!-- - [💡 Projects](./projects/) — End-to-end mini projects for practice.  -->
  
@@ -117,13 +117,9 @@ Hands-on practice is the key to success. The DP-100 exam focuses heavily on **ap
 - [Azure ML Examples - GitHub Repo](https://github.com/Azure/azureml-examples/tree/main)
 - [Azure Machine Learning documentation](https://learn.microsoft.com/en-us/azure/machine-learning/?view=azureml-api-2)
 - [Azure ML Package](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml?view=azure-python)
-- []()
+- [Additional Learning Materials](./notes/Additional%20Learning%20Materials.md)
 - []()
 - []()
 
 ---
-
-## 💬 Status
-This repository is a **work in progress** — updated as I continue my own DP-100 learning path.  
-Feedback, suggestions, and contributions are always welcome!
 
