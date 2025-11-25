@@ -1,0 +1,12 @@
+
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.11
+  - pip=22.3.1
+  - pip:
+      - scipy
+      - numpy
+      - pandas
+      - scikit-learn
+name: registry_env

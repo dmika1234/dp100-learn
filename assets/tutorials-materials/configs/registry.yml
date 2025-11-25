@@ -1,0 +1,9 @@
+
+name: dmdp100-registry
+tags:
+  description: Basic registry with one primary region and to additional regions
+  foo: bar
+location: westeurope
+replication_locations:
+  - location: westeurope
+  - location: swedencentral
