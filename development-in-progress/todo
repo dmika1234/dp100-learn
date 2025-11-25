@@ -4,3 +4,6 @@
 - Wrangle data interactively with attached Synapse Spark pools and serverless Spark compute
 - Online Deployment with custom scoring script
 - Package a feature retrieval specification with the model artifact
+- Clean-up notebooks:
+        - deployments
+        - rai dashboard
