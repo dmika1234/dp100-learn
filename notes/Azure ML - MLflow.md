@@ -461,3 +461,4 @@ All registered models are listed in the Models page of the Azure Machine Learnin
 
 ## Additional Materials
 - [MLflow Documentation](https://www.mlflow.org/docs/latest/ml/tracking/).
+- [Work with registered models in Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-models?view=azureml-api-2&tabs=python)
