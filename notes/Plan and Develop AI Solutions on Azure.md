@@ -1,38 +1,26 @@
 # Plan and prepare to develop AI solutions on Azure
 
-
 ## What is AI?
-Common AI capabilities that developers can integrate into a software application include:
 
-Capability	Description
-Diagram of speech bubbles.
-Generative AI	The ability to generate original responses to natural language prompts. For example, software for a real estate business might be used to automatically generate property descriptions and advertising copy for a property listing.
-Diagram of a human head with a cog for a brain.
-Agents	Generative AI applications that can respond to user input or assess situations autonomously, and take appropriate actions. For example, an "executive assistant" agent could provide details about the location of a meeting on your calendar, or even attach a map or automate the booking of a taxi or rideshare service to help you get there.
-Diagram of an eye being scanned.
-Computer vision	The ability to accept, interpret, and process visual input from images, videos, and live camera streams. For example, an automated checkout in a grocery store might use computer vision to identify which products a customer has in their shopping basket, eliminating the need to scan a barcode or manually enter the product and quantity.
-Diagram of a speech bubble and a sound wave.
-Speech	The ability to recognize and synthesize speech. For example, a digital assistant might enable users to ask questions or provide audible instructions by speaking into a microphone, and generate spoken output to provide answers or confirmations.
-Diagram of a text document.
-Natural language processing	The ability to process natural language in written or spoken form, analyze it, identify key points, and generate summaries or categorizations. For example, a marketing application might analyze social media messages that mention a particular company, translate them to a specific language, and categorize them as positive or negative based on sentiment analysis.
-Diagram of a form containing information.
-Information extraction	The ability to use computer vision, speech, and natural language processing to extract key information from documents, forms, images, recordings, and other kinds of content. For example, an automated expense claims processing application might extract purchase dates, individual line item details, and total costs from a scanned receipt.
-Diagram of a chart showing an upward trend.
-Decision support	The ability to use historic data and learned correlations to make predictions that support business decision making. For example, analyzing demographic and economic factors in a city to predict real estate market trends that inform property pricing decisions.
-Determining the specific AI capabilities you want to include in your application can help you identify the most appropriate AI services that you'll need to provision, configure, and use in your solution.
+AI enables applications to perform tasks such as generating content, responding autonomously, interpreting images and speech, extracting information, and supporting decisions. Choosing the right capability helps determine which Azure AI services you need.
+
+**Common capabilities include:**
+
+* **Generative AI:** Produces text, code, or images from natural-language prompts.
+* **Agents:** Autonomous systems that can act on user input and perform tasks.
+* **Computer vision:** Interprets images and video (object detection, OCR, captions).
+* **Speech:** Speech-to-text, text-to-speech, translation, and speaker recognition.
+* **Natural language processing:** Summarization, classification, entity detection.
+* **Information extraction:** Extracts structured fields from documents, images, or audio.
+* **Decision support:** Predictive modeling based on historical data.
 
 ## A closer look at generative AI
-Generative AI represents the latest advance in artificial intelligence, and deserves some extra attention. Generative AI uses language models to respond to natural language prompts, enabling you to build conversational apps and agents that support research, content creation, and task automation in ways that were previously unimaginable.
 
-Diagram of a prompt, a language model, and a response.
-
-The language models used in generative AI solutions can be large language models (LLMs) that have been trained on huge volumes of data and include many millions of parameters; or they can be small language models (SLMs) that are optimized for specific scenarios with lower overhead. Language models commonly respond to text-based prompts with natural language text; though increasingly new multi-modal models are able to handle image or speech prompts and respond by generating text, code, speech, or images.
-
+Generative AI relies on LLMs or SLMs that can produce natural language text and multimodal outputs. Modern models accept text, image, or speech inputs and generate text, images, or code—forming the foundation of conversational applications and agents.
 
 ## Plan and prepare to develop AI solutions on Azure - Foundry Tools
-Microsoft Azure provides a wide range of cloud services that you can use to develop, deploy, and manage an AI solution. The most obvious starting point for considering AI development on Azure is Foundry Tools; a set of out-of-the-box prebuilt APIs and models that you can integrate into your applications. The following table lists some commonly used Foundry Tools (for a full list of all available Foundry Tools, see [Available Foundry Tools](https://learn.microsoft.com/en-us/azure/ai-services/what-are-ai-services#available-azure-ai-services?azure-portal=true)).
 
-Expand table
+Azure provides prebuilt **Foundry Tools**, each exposing ready-to-use APIs for vision, speech, language, translation, search, and generative AI. These services can be used directly or as part of a Microsoft Foundry project.
 
 | Service | Description |
 | --- | --- |
@@ -50,33 +38,90 @@ Expand table
 
 ### Considerations for Foundry Tools resources
 
-To use Foundry Tools, you create one or more Azure AI resources in an Azure subscription and implement code in client applications to consume them. In some cases, AI services include web-based visual interfaces that you can use to configure and test your resources - for example to train a custom image classification model using the **Custom Vision** service you can use the visual interface to upload training images, manage training jobs, and deploy the resulting model.
-
-Note
-
-You can provision Foundry Tools resources in the Azure portal (or by using BICEP or ARM templates or the Azure command-line interface) and build applications that use them directly through various service-specific APIs and SDKs. However, as we'll discuss later in this module, in most medium to large-scale development scenarios it's better to provision Foundry Tools resources as part of an _Microsoft Foundry_ project - enabling you to centralize access control and cost management, and making it easier to manage shared resources and build the next generation of generative AI apps and agents.
+You provision AI services in Azure and call them via SDKs or REST. Many services provide simple visual interfaces for testing or training custom models. For medium/large projects, it’s usually better to organize resources inside a **Microsoft Foundry** project to unify identity, costs, and development workflow.
 
 #### Single service or Foundry Tools resource?
 
-Most Foundry Tools, such as **Azure Vision**, **Azure Language**, and so on, can be provisioned as standalone resources, enabling you to create only the Azure resources you specifically need. Additionally, standalone Foundry Tools often include a free-tier SKU with limited functionality, enabling you to evaluate and develop with the service at no cost. Each standalone Azure AI resource provides an endpoint and authorization keys that you can use to access it securely from a client application.
+You can deploy:
 
-Alternatively, you can provision a Foundry Tools resource that encapsulates multiple AI services in a single Azure resource. Using a Foundry Tools resource can make it easier to manage applications that use multiple AI capabilities. There are two Foundry resource types you can use:
-
-Expand table
-
-| Resource | Description |
-| --- | --- |
-| ![Foundry tools icon.](./../assets/imgs/foundry_files/cognitive-services.png)  <br>**Foundry Tools** | The Foundry Tools resource type includes the following services, making them available from a single endpoint:<br><br>*   Azure Speech<br>*   Azure Language<br>*   Azure Translator<br>*   Azure Vision<br>*   Azure AI Face<br>*   Azure AI Custom Vision<br>*   Azure Document Intelligence |
-| ![Microsoft Foundry icon.](./../assets/imgs/foundry_files/ai-services.png)  <br>**Microsoft Foundry** | The Microsoft Foundry resource type includes the following services, and supports working with them through a Microsoft Foundry project\*:<br><br>*   Azure OpenAI<br>*   Azure Speech<br>*   Azure Language<br>*   Microsoft Foundry Content Safety<br>*   Azure Translator<br>*   Azure Vision<br>*   Azure AI Face<br>*   Azure Document Intelligence<br>*   Azure Content Understanding |
-
-\* Microsoft Foundry is discussed in the next unit.
+* **Individual services** (Vision, Language, Speech, etc.) — fine-grained and often include free tiers.
+* **Foundry Tools** resources — single endpoint containing multiple AI services.
+* **Microsoft Foundry** resources — include generative AI models and additional tools for agents, content safety, and evaluation.
 
 #### Regional availability
 
-Some services and models are available in only a subset of Azure regions. Consider service availability and any regional quota restrictions for your subscription when provisioning Foundry Tools. Use the [product availability table](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) to check regional availability of Azure services. Use the [model availability table](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability?azure-portal=true) in the Azure OpenAI documentation to determine regional availability for Azure OpenAI models.
+Models and services differ by region. Check the [product availability](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) and [model availability](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability?azure-portal=true).
 
 #### Cost
 
-Foundry Tools are charged based on usage, with different pricing schemes available depending on the specific services being used. As you plan an AI solution on Azure, use the [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services) documentation to understand pricing for the AI services you intend to incorporate into your application. You can use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator) to estimate the costs your expected usage will incur.
+Services are billed per usage. Use the [Foundry Tools pricing](https://azure.microsoft.com/pricing/details/cognitive-services) and the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator) to estimate costs.
+
+---
+
+## Microsoft Foundry
+
+Microsoft Foundry provides a centralized platform for AI development, including a portal and SDK. It simplifies project organization, resource access, model deployment, evaluation, and responsible AI workflows.
+
+### Microsoft Foundry projects
 
 
+#### Foundry projects
+
+Linked to a **Microsoft Foundry resource**. Provide access to OpenAI models, agent services, Foundry Tools, and evaluation tools. Ideal for most generative AI applications.
+
+#### Hub-based projects
+
+Linked to an **Azure AI hub** resource. Include compute, storage, Key Vault, Prompt Flow support, and integration with Azure ML. Best for advanced workflows like fine-tuning or collaborative ML development.
+
+---
+
+## Developer tools and SDKs
+
+### Development tools and environments
+
+#### The Microsoft Foundry for Visual Studio Code extension
+
+Streamlines creating projects, deploying/testing models, and building agents directly inside VS Code.
+
+#### GitHub and GitHub Copilot
+
+Integrated into VS/VS Code for source control and AI-assisted coding.
+
+### Programming languages, APIs, and SDKs
+You can develop AI applications using many common programming languages and frameworks, including Microsoft C#, Python, Node, TypeScript, Java, and others. When building AI solutions on Azure, some common SDKs you should plan to install and use include:
+
+- The **Microsoft Foundry SDK**, which enables you to write code to connect to Microsoft Foundry projects and access resource connections, which you can then work with using service-specific SDKs.
+- The **Microsoft Foundry Models API**, which provides an interface for working with generative AI model endpoints hosted in Microsoft Foundry.
+- The **Azure OpenAI in Microsoft Foundry Models API**, which enables you to build chat applications based on OpenAI models hosted in Microsoft Foundry.
+- **Foundry Tools SDKs** - AI service-specific libraries for multiple programming languages and frameworks that enable you to consume Foundry Tools resources in your subscription. You can also use Foundry Tools through their REST APIs.
+- The **Microsoft Foundry Agent Service**, which is accessed through the Microsoft Foundry SDK and can be integrated with frameworks like Semantic Kernel to build comprehensive AI agent solutions.
+
+---
+
+## Responsible AI
+
+AI systems must be designed with societal impact, fairness, privacy, and safety in mind. Key principles:
+
+### Fairness
+
+Models should avoid disadvantaging groups. Ensure representative data and monitor performance across user subgroups.
+
+### Reliability and safety
+
+Systems must be robust and thoroughly tested, especially where mispredictions can cause harm.
+
+### Privacy and security
+
+Protect training and inference data, implement safeguards, and securely manage access.
+
+### Inclusiveness
+
+Design with diverse perspectives and ensure accessibility for all users.
+
+### Transparency
+
+Communicate model purpose, limitations, confidence scores, and data usage clearly.
+
+### Accountability
+
+Developers and organizations remain responsible for model behavior and should follow governance and compliance standards.
