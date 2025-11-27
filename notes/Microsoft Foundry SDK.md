@@ -1,8 +1,4 @@
-Here are your improved, structured, and summarized notes for the Microsoft Foundry SDK, tailored for Azure DP-100 exam preparation. All key information, code, and references are preserved as requested.
-
----
-
-# Microsoft Foundry SDK – Key Notes
+# Microsoft Foundry SDK
 
 ## Overview
 
