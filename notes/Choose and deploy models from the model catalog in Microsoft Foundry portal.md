@@ -1,7 +1,3 @@
-Here are your organized and cleaned notes for the topic: **Choose and Deploy Models from the Model Catalog in Microsoft Foundry Portal** (for Azure DP-100 exam prep). All key points, definitions, and references are preserved as requested.
-
----
-
 # 1. Overview: Foundation Models & Use Cases
 
 - **Foundation models** (e.g., GPT family) are advanced language models for natural language understanding, generation, and interaction.
