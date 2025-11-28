@@ -192,6 +192,7 @@ As a candidate for this exam, you should have knowledge and experience in data s
 *   Test prompts with manual evaluation
     
 *   Define and track prompt variants
+https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/flow-tune-prompts-using-variants?view=foundry-classic
     
 *   Create prompt templates
     
@@ -209,6 +210,7 @@ As a candidate for this exam, you should have knowledge and experience in data s
 *   Configure an Azure AI Search-based index store
     
 *   Evaluate your RAG solution
+*   https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/how-to-develop-an-evaluation-flow?view=azureml-api-2
     
 
 #### Optimize through fine-tuning
