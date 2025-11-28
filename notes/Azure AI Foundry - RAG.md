@@ -46,7 +46,6 @@ When you want to create an agent that uses your own data to generate accurate an
 
 Azure AI Search is a **retriever** that you can include when building a language model application with prompt flow. Azure AI Search allows you to bring your own data, index your data, and query the index to retrieve any information you need.
 
-![Diagram showing an index being queried to retrieve grounding data.](./Make your data searchable - Training _ Microsoft Learn_files/index.png)
 
 ## Using a _vector_ index
 
@@ -63,7 +62,6 @@ These two documents contain texts that are semantically related, even though dif
 
 Imagine the keywords being extracted from the document and plotted as a vector in a multidimensional space:
 
-![Diagram of vector embeddings.](./Make your data searchable - Training _ Microsoft Learn_files/vector-embeddings.jpg)
 
 The distance between vectors can be calculated by measuring the cosine of the angle between two vectors, also known as the _cosine similarity_. In other words, the cosine similarity computes the semantic similarity between documents and a query.
 
@@ -71,7 +69,6 @@ By representing words and their meanings with vectors, you can extract relevant 
 
 When you want to be able to use vector search to search your data, you need to create embeddings when creating your search index. To create embeddings for your search index, you can use an Azure OpenAI embedding model available in Microsoft Foundry.
 
-![Diagram showing a vector index that contains embeddings.](./Make your data searchable - Training _ Microsoft Learn_files/vector-index.png)
 
 Tip
 
@@ -83,7 +80,6 @@ In Azure AI Search, a **search index** describes how your content is organized t
 
 Though there are different approaches to creating an index, the integration of Azure AI Search in Microsoft Foundry makes it easy for you to create an index that is suitable for language models. You can add your data to Microsoft Foundry, after which you can use Azure AI Search to create an index in the Microsoft Foundry portal using an embedding model. The index asset is stored in Azure AI Search and queried by Microsoft Foundry when used in a chat flow.
 
-![Screenshot of creating an index in Microsoft Foundry.](./Make your data searchable - Training _ Microsoft Learn_files/create-index.png)
 
 How you configure your search index depends on the data you have and the context you want your language model to use. For example, **keyword search** enables you to retrieve information that exactly matches the search query. **Semantic search** already takes it one step further by retrieving information that matches the meaning of the query instead of the exact keyword, using semantic models. Currently, the most advanced technique is **vector search**, which creates embeddings to represent your data.
 
@@ -195,8 +191,6 @@ After uploading data to Microsoft Foundry and creating an index on your data usi
 
 **Prompt Flow** is a development framework for defining flows that orchestrate interactions with an LLM.
 
-![Diagram of a prompt flow.](./Implement RAG in a prompt flow - Training _ Microsoft Learn_files/prompt-flow.png)
-
 A flow begins with one or more _inputs_, usually a question or prompt entered by a user, and in the case of iterative conversations the chat history to this point.
 
 The flow is then defined as a series of connected _tools_, each of which performs a specific operation on the inputs and other environmental variables. There are multiple types of tool that you can include in a prompt flow to perform tasks such as:
@@ -212,7 +206,6 @@ Finally, the flow has one or more _outputs_, typically to return the generated r
 
 The key to using the RAG pattern in a prompt flow is to use an Index Lookup tool to retrieve data from an index so that subsequent tools in the flow can use the results to augment the prompt used to generate output from an LLM.
 
-![Diagram of a prompt flow with an Index Lookup tool.](./Implement RAG in a prompt flow - Training _ Microsoft Learn_files/rag-prompt-flow.png)
 
 ## Use a sample to create a chat flow
 
@@ -220,7 +213,6 @@ Prompt flow provides various samples you can use as a starting point to create a
 
 The sample contains the necessary elements to include RAG and a language model:
 
-![Screenshot of the chat flow created with the Q&A sample.](./Implement RAG in a prompt flow - Training _ Microsoft Learn_files/chat-flow.png)
 
 1.  Append the history to the chat input to define a prompt in the form of a contextualized form of a question.
 2.  Look up relevant information from your data using your search index.

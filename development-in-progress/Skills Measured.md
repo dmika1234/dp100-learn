@@ -198,7 +198,7 @@ https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/flow-tune-prompts-usin
     
 *   Define chaining logic with the prompt flow SDK
     
-*   Use tracing to evaluate your flow
+*   Use tracing to evaluate your flow - https://learn.microsoft.com/en-us/azure/databricks/mlflow3/genai/tracing/?utm_source=chatgpt.com
     
 
 #### Optimize through Retrieval Augmented Generation (RAG)
@@ -212,7 +212,7 @@ https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/flow-tune-prompts-usin
 *   Evaluate your RAG solution
 *   https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/how-to-develop-an-evaluation-flow?view=azureml-api-2
     
-
+https://microsoft.github.io/promptflow/how-to-guides/develop-a-dag-flow/quick-start.html?utm_source=chatgpt.com
 #### Optimize through fine-tuning
 
 *   Prepare data for fine-tuning
