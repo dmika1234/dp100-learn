@@ -16,7 +16,7 @@ pip install azureml-mlflow
 
 
 ## Create an MLflow experiment
-You can create a MLflow experiment, which allows you to group runs. If you don't create an experiment, MLflow will assume the default experiment with name Default.
+You can create a MLflow experiment, which allows you to group runs. If you don't create an experiment, MLflow will assume the default experiment with name "Default".
 
 To create an experiment, run the following command in a notebook:
 
@@ -69,9 +69,9 @@ Additionally, you can manually log your model with MLflow. Manually logging mode
 Common functions used with custom logging are:
 
 - `mlflow.log_param()`: Logs a single key-value parameter. Use this function for an input parameter you want to log.
-- `mlflow.log_metric`(): Logs a single key-value metric. Value must be a number. Use this function for any output you want to store with the run.
-- `mlflow.log_artifact`(): Logs a file. Use this function for any plot you want to log, save as image file first.
-- `mlflow.log_model`(): Logs a model. Use this function to create an MLflow model, which may include a custom signature, environment, and input examples.
+- `mlflow.log_metric()`: Logs a single key-value metric. Value must be a number. Use this function for any output you want to store with the run.
+- `mlflow.log_artifact()`: Logs a file. Use this function for any plot you want to log, save as image file first.
+- `mlflow.log_model()`: Logs a model. Use this function to create an MLflow model, which may include a custom signature, environment, and input examples.
 To use custom logging in a notebook, start a run and log any metric you want:
 ```python
 from xgboost import XGBClassifier
