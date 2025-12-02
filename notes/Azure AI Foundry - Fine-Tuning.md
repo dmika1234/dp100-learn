@@ -18,7 +18,6 @@ Prompt engineering is a quick and easy way to improve _how the model acts_, and 
 *   **Retrieval Augmented Generation** (**RAG**): Ground your data by first retrieving context from a data source before generating a response.
 *   **Fine-tuning**: Train a base language model on a dataset before integrating it in your application.
 
-![Diagram showing the various strategies to optimize the model's performance.](./Understand when to fine-tune a language model - Training _ Microsoft Learn_files/model-optimization.png)
 
 RAG is most commonly applied when you need the model's responses to be factual and _grounded_ in specific data. For example, you want customers to ask questions about hotels that you're offering in your travel booking catalog. On the other hand, when you want the model to behave a certain way, fine-tuning can help you achieve your goal. You can also use a combination of optimization strategies, like RAG _and_ a fine-tuned model, to improve your language application.
 
@@ -31,7 +30,6 @@ To maximize the **consistency of the model's behavior**, you can **fine-tune a b
 # Prepare your data to fine-tune a chat completion model
 Fine-tuning involves combining a suitable _foundation_ model to use as a base, and with a set of _training data_ that includes example prompts and responses that the model can learn from.
 
-![Diagram of a base model plus training data resulting in a fine-tuned model.](./Prepare your data to fine-tune a chat completion model - Training _ Microsoft Learn_files/fine-tuning.png)
 
 When you decide you want to fine-tune a language model, you need to identify the dataset you can use to fine-tune your language model.
 
