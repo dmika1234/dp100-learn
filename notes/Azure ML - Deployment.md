@@ -340,7 +340,3 @@ job = ml_client.batch_endpoints.invoke(
 * [Notebook: Deploy to online endpoint](azure-labs/azure-ml-dev/Labs/10/Deploy%20to%20online%20endpoint.ipynb)
 * [Azure Labs: Deploy a model to a batch endpoint](https://learn.microsoft.com/en-us/training/modules/deploy-model-batch-endpoint/)
 * [Notebook: Deploy to batch endpoint](azure-labs/azure-ml-dev/Labs/10/Deploy%20to%20batch%20endpoint.ipynb)
-
----
-
-If you want, I can produce a matching **Batch Endpoints** section (clean + compact, like above).
