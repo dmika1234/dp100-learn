@@ -121,7 +121,3 @@
 
 - [Create and use custom tool packages in prompt flow](https://microsoft.github.io/promptflow/how-to-guides/develop-a-tool/create-and-use-tool-package.html)
 - [Customize environment runtime in prompt flow](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/how-to-customize-environment-runtime)
-
----
-
-**Tip:** For the DP-100 exam, focus on understanding the lifecycle, flow structure, tool types, connection/security, deployment, and monitoring metrics. Use the official links for deeper dives into custom tools and environments.

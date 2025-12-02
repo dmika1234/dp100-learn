@@ -164,7 +164,3 @@
 - [GitHub Marketplace Models](https://github.com/marketplace/models-github)
 - [Microsoft Foundry Model Catalog](https://ai.azure.com/explore/models)
 - [Prompt Pattern Catalog (White et al., 2023)](https://arxiv.org/abs/2302.11382)
-
----
-
-Let me know if you want these notes in a different format or need further breakdowns for specific exam objectives!

@@ -138,8 +138,3 @@ print(response.choices[0].message.content)
 | Get Specific Connection     | `connections.get()`               | Returns credentials if requested                                                 |
 | Create Chat Client          | `get_openai_client()`             | Use for any deployed model, requires `openai` package                            |
 | Reference Images            | Project Overview, Connections     | [Overview](https://learn.microsoft.com/en-us/training/wwl-data-ai/ai-foundry-sdk/media/ai-project-overview.png#lightbox), [Connections](https://learn.microsoft.com/en-us/training/wwl-data-ai/ai-foundry-sdk/media/ai-project-connections.png#lightbox) |
-
----
-
-**Keep these notes as a quick reference for the Microsoft Foundry SDK section of your DP-100 exam prep.**  
-Let me know if you want to add more materials or need further breakdowns!

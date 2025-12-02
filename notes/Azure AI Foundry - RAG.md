@@ -134,14 +134,3 @@ print(completion)
 | Hybrid Search          | Combines keyword, semantic, and vector search                                               | [Hybrid Search Overview](https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview) |
 | Index Lookup Tool      | Retrieves data from an index in prompt flow                                                 | [Index Lookup Tool](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/tools-reference/index-lookup-tool) |
 | Prompt Flow            | Framework for orchestrating LLM and data retrieval steps                                   | -                                                                                               |
-
----
-
-**Tips:**
-- Use vector or hybrid search for best results in generative AI applications.
-- Always ground LLM responses with up-to-date, relevant data for accuracy.
-- Experiment with prompt variants to optimize groundedness and response quality.
-
----
-
-Let me know if you want to expand any section or need more details on a specific part!
